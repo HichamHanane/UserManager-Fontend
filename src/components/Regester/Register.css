@@ -1,5 +1,5 @@
 /* From Uiverse.io by nathann09 */ 
-.form {
+.register_form {
   background-color: #fff;
   display: block;
   padding: 2rem;
@@ -10,25 +10,26 @@
  
 }
 
-.form-title {
+.register_form  .form-title {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 600;
   text-align: center;
   color: #000;
+  text-transform: capitalize;
 }
 
-.input-container {
+.register_form .input-container {
   position: relative;
 }
 
-.input-container input, .form button {
+.register_form .input-container input, .form button {
   outline: none;
   border: 1px solid #e5e7eb;
   margin: 8px 0;
 }
 
-.input-container input {
+.register_form .input-container input {
   background-color: #fff;
   padding: 1rem;
   padding-right: 3rem;
@@ -39,7 +40,7 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.submit {
+.register_form .submit {
   display: block;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -52,22 +53,24 @@
   font-weight: 500;
   width: 100%;
   border-radius: 0.5rem;
+  border: none;
   text-transform: uppercase;
   cursor: pointer;
+  outline: none;
 }
 
-.signup-link {
+.register_form .signup-link {
   color: #4F46E5;
   font-size: 0.875rem;
   line-height: 1.25rem;
   text-align: center;
 }
 
-.signup-link a {
+.register_form .signup-link a {
   text-decoration: underline;
 }
 
-.login_error{
+.register_form .errors{
   font-size: 0.6rem;
   text-transform: capitalize;
   color: red;
