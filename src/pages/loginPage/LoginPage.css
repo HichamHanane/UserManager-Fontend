@@ -1,0 +1,8 @@
+.loginpage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100lvh;
+    background-color: #111827;
+    
+}
