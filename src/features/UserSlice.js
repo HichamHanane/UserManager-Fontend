@@ -18,6 +18,22 @@ export const getUsers = createAsyncThunk('users/getUsers',async (__,{rejectWithV
     }
 })
 
+export const deleteUser = createAsyncThunk('users/deleteUser',async (id,{rejectWithValue})=>{
+    console.log('id after async thunk :',id);
+    try {
+        let response = await axios.delete(`http://localhost:3000/api/users/${id}`,{},{
+            withCredentials: true 
+        })
+        console.log('Response delete user :',response);
+        return response.data.users;
+        
+    } catch (error) {
+        console.log('error while hetting users : ',error);
+        return rejectWithValue(error.data.message)
+        
+    }
+})
+
 
 
 export const userSlice = createSlice({
@@ -25,6 +41,10 @@ export const userSlice = createSlice({
     initialState:{
         users:[],
         isLoading:false,
+        userDeleted:{
+            isLoading:false,
+            error:null
+        },
         error:null
     },
     reducers:{},
@@ -44,6 +64,26 @@ export const userSlice = createSlice({
             console.log('get users rejected :',action);
             state.isLoading = false;
             state.error=action.payload;
+        })
+
+        // delete user
+
+        .addCase(deleteUser.pending,(state,action)=>{
+            console.log('delete user pending :',action);
+            state.userDeleted.isLoading = true;
+            
+            state.error=null
+        })
+        .addCase(deleteUser.fulfilled,(state,action)=>{
+            console.log('delete user fulfilled :',action);
+            state.userDeleted.isLoading = false;
+            state.users=action.payload;
+            state.userDeleted.error=null
+        })
+        .addCase(deleteUser.rejected,(state,action)=>{
+            console.log('delete user rejected :',action);
+            state.userDeleted.isLoading = false;
+            state.userDeleted.error = action.payload;
         })
     }
 })

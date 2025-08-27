@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import './UsersTable.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsers } from '../../features/UserSlice'
+import { deleteUser, getUsers } from '../../features/UserSlice'
+import { toast } from 'sonner'
 
 function UsersTable() {
-    let { users, isLoading, error } = useSelector((state) => state.users)
+    let { users, isLoading, error, userDeleted } = useSelector((state) => state.users)
     const dispatch = useDispatch()
 
     const allUsers = users?.map((user, index) => {
@@ -25,7 +26,7 @@ function UsersTable() {
                 </td>
 
                 <td>
-                    <button class="action-btn">
+                    <button class="action-btn" onClick={() => deleteuser(user?._id)}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
                         </svg>
@@ -34,6 +35,21 @@ function UsersTable() {
             </tr>
         )
     })
+
+    const deleteuser = (id) => {
+        try {
+            console.log('id before async thunk :',id);
+            
+            dispatch(deleteUser(id))
+            .unwrap()
+            .then(()=>{
+                toast.success('Deleted Successfully')
+            })
+        } catch (error) {
+            console.log('Error :', error);
+
+        }
+    }
 
     useEffect(() => {
         dispatch(getUsers())
@@ -51,7 +67,9 @@ function UsersTable() {
                     </tr>
                 </thead>
                 <tbody className='table_body'>
-                    {allUsers}
+                    {
+                        users.lenght == 0 ? <p>no users found</p> : allUsers
+                    }
                 </tbody>
             </table>
         </div>
