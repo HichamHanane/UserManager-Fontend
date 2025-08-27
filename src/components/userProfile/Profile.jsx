@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuth, userLogout } from '../../features/AuthSlice';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 function Profile() {
-  let { user, isLoading,isAuth } = useSelector((state) => state.auth);
+  let { user, isLoading, isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
-  
   const logout = () => {
     try {
       dispatch(userLogout())
@@ -24,7 +23,7 @@ function Profile() {
     }
   }
   useEffect(() => {
-     dispatch(checkAuth())
+    dispatch(checkAuth())
   }, [])
   return (
     <>
