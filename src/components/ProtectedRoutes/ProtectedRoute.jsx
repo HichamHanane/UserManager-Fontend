@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react'
-import { checkAuth } from '../../features/AuthSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-function ProtectedRoute() {
-    let {isAuth} = useSelector((state)=> state.auth);
-    const dispatch = useDispatch();
+const ProtectedRoute = ({ children, requiredRole }) => {
+    const { isAuth, role, isLoading } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        dispatch(checkAuth());
-    }, [])
-
-    if(isAuth){
-        return <Outlet />
+    if (isLoading) {
+        return <div>Loading...</div>; 
     }
 
-    return (
-        <Navigate to='/' replace/>
-    )
-}
+    if (!isAuth) {
+        return <Navigate to="/" replace />;
+    }
 
-export default ProtectedRoute
+    if (requiredRole && role !== requiredRole) {
+        return <Navigate to="/user-profile" replace />;
+    }
+    return children;
+};
+
+export default ProtectedRoute;

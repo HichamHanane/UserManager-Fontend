@@ -10,36 +10,18 @@ function Dashboard() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-      const logout = () => {
+    const logout = () => {
         try {
-          dispatch(userLogout())
-            .unwrap()
-            .then(() => {
-              dispatch(checkAuth())
-              navigate('/')
-            })
+            dispatch(userLogout())
+                .unwrap()
+                .then(() => {
+                    navigate('/')
+                })
         }
         catch (error) {
-          console.log('Error :', error);
-    
+            console.log('Error :', error);
+
         }
-      }
-
-    useEffect(() => {
-        dispatch(checkAuth());
-    }, [])
-
-    useEffect(() => {
-        if (!isAuth) {
-            navigate('/')
-            return;
-        }
-        console.log('Auuth :', isAuth);
-
-    }, [])
-
-    if (role == "user") {
-        return <Navigate to='/user-profile' />
     }
     return (
         <div class="container">
@@ -47,7 +29,7 @@ function Dashboard() {
                 <div class="header-left">
                     <h1>Welcome to your dashboard</h1>
                 </div>
-                <button class="logout-btn" onClick={()=>logout()}>
+                <button class="logout-btn" onClick={() => logout()}>
                     <CiLogout color='white' />
                     Logout
                 </button>
@@ -58,10 +40,10 @@ function Dashboard() {
                     <span class="filter-value">Users</span>
                 </div>
                 <div class="controls-right">
-                    <button class="icon-btn">
+                    {/* <button class="icon-btn">
                         <CiCirclePlus />
                         new user
-                    </button>
+                    </button> */}
                 </div>
             </div>
 

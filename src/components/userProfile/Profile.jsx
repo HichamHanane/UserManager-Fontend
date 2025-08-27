@@ -3,6 +3,7 @@ import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkAuth, userLogout } from '../../features/AuthSlice';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { CiLogout } from 'react-icons/ci';
 function Profile() {
   let { user, isLoading, isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ function Profile() {
       dispatch(userLogout())
         .unwrap()
         .then(() => {
-          dispatch(checkAuth())
           navigate('/')
         })
     }
@@ -22,9 +22,6 @@ function Profile() {
 
     }
   }
-  useEffect(() => {
-    dispatch(checkAuth())
-  }, [])
   return (
     <>
       <div class="card">
@@ -33,7 +30,7 @@ function Profile() {
         <div class="card__title">{user?.name}</div>
         <div class="card__subtitle">{user?.email}</div>
         <div class="card__wrapper">
-          <button class="card__btn" onClick={() => logout()}>Logout</button>
+          <button class="card__btn" onClick={() => logout()}><CiLogout color='#78858F' />Logout</button>
         </div>
       </div>
     </>

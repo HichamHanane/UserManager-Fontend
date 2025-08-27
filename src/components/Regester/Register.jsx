@@ -22,6 +22,7 @@ function Register() {
         handleSubmit,
         formState: { errors, isValid },
     } = useForm({
+        mode:"onBlur",
         resolver: yupResolver(validationSchema),
 
     });
@@ -65,7 +66,7 @@ function Register() {
                     <input type="password" placeholder="Enter password..." name='password' {...register('password')} />
                     {errors.password && <div className="errors">{errors.password.message}</div>}
                 </div>
-                <button class="submit" type='submit'  >
+                <button class="submit" type='submit'  disabled={!isValid} style={{cursor:isValid ?'pointer' :'not-allowed'}}>
                     {
                         isLoading
                             ? "Loading..."
