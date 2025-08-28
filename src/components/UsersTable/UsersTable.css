@@ -111,6 +111,7 @@
             .user-name {
                 font-weight: 500;
                 color: #111827;
+                text-transform: capitalize;
             }
 
             .user-email {

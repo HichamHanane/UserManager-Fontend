@@ -11,8 +11,6 @@ function Login() {
     let { error, isLoading, isAuth } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate();
-    let [email, setEmail] = useState()
-    let [password, setPassword] = useState()
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().email('Email is invalid').required('Email is required'),
