@@ -1,12 +1,83 @@
-# React + Vite
+# UserManager Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A user management dashboard built with React, Redux Toolkit, Vite, and Material UI. This app supports authentication, user registration, profile management, and admin dashboard features.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User login and registration
+- Protected routes for admin and user roles
+- User profile page
+- Admin dashboard with user table and add/delete user functionality
+- Form validation with React Hook Form and Yup
+- Toast notifications with Sonner
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Redux Toolkit
+- React Router
+- Material UI
+- Axios
+- Vite
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm
+
+### Installation
+
+```sh
+npm install
+```
+
+### Running the App
+
+```sh
+npm run dev
+```
+
+The app will be available at [http://localhost:5173](http://localhost:5173).
+
+### Building for Production
+
+```sh
+npm run build
+```
+
+### Linting
+
+```sh
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+  components/      # Reusable UI components
+  features/        # Redux slices
+  pages/           # Route pages
+  store/           # Redux store setup
+  assets/          # Static assets
+  App.jsx          # Main app component
+  main.jsx         # Entry point
+```
+
+## API
+
+This frontend expects a backend running at `http://localhost:3000` with the following endpoints:
+
+- `POST /api/login`
+- `POST /api/register`
+- `POST /api/logout`
+- `GET /api/check-token`
+- `GET /api/users`
+- `POST /api/users`
+- `DELETE /api/users/:id`
+
+## License
+
+MIT
